@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import api from '../../services/api';
+import './style.css';
 
 
 export default class Main extends Component {
@@ -20,11 +21,22 @@ export default class Main extends Component {
     };
 
     render() {
-    return (
-        <div className="product-list">
-            {this.state.Products.map(Products => (
-                <h2 key={Products._id}>{Products.title}</h2>//retorna elementos da lista
-            ))};
-        </div>
-    )};    
+        
+        const { Products } = this.state;
+
+        return (
+            <div className="product-list">
+                {Products.map(Products => (
+                    <article key={Products._id}>
+
+                        <strong>{Products.title}</strong>
+                        <p>{Products.description}</p>
+
+                        <a href="#">Acessar</a>
+
+                    </article>//retorna elementos da lista {key = {nome_da Variavel._id  usar sempre no elemento apos o map()}}
+                ))};
+            </div>
+        );
+    };    
 };
