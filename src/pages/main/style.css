@@ -32,5 +32,30 @@
 }
 .product-list article a:hover{
     background: #da552f; 
-    color: #ddd
+    color: #ddd;
 }
+.product-list .buttons{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+.product-list .buttons button {
+    padding: 20px;
+    background: #da552f;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 18px;
+    font-weight: bold;    
+}
+.product-list .buttons button:hover {
+    opacity: 0.8;
+    cursor: pointer;
+}
+.product-list .buttons button:disabled{
+    opacity: 0.5;
+    cursor: default;
+} 
+
+
+

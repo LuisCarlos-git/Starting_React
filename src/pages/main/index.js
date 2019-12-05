@@ -7,6 +7,8 @@ export default class Main extends Component {
 
     state = {
         Products: [],
+        ProductInfo: {},
+        page: 1,
     };
 
 
@@ -14,15 +16,38 @@ export default class Main extends Component {
         this.loadProducts();
     };
 
-    loadProducts = async () => {
-        const response = await api.get('/products');
+    loadProducts = async (page = 1) => {
+        const response = await api.get(`/products?page=${page}`);
 
-        this.setState({ Products: response.data.docs })//add produtos da api no array
+        const { docs, ...ProductInfo } = response.data;
+
+        this.setState({ Products: docs, ProductInfo, page })//add produtos da api no array
     };
+
+    prevPage = () => {
+        const { page, ProductInfo } = this.state;
+
+        if(page === 1) return;
+
+        const pageNumber = page - 1;
+
+        this.loadProducts(pageNumber)
+    }
+
+    nextPage = () => {
+        const { page, ProductInfo } = this.state;
+
+        if(page === ProductInfo.pages) return;
+
+        const pageNamber = page + 1;
+
+        this.loadProducts(pageNamber)
+    }
+
 
     render() {
         
-        const { Products } = this.state;
+        const { Products, page, ProductInfo } = this.state;
 
         return (
             <div className="product-list">
@@ -33,9 +58,12 @@ export default class Main extends Component {
                         <p>{Products.description}</p>
 
                         <a href="#">Acessar</a>
-
                     </article>//retorna elementos da lista {key = {nome_da Variavel._id  usar sempre no elemento apos o map()}}
                 ))};
+                <div className="buttons">
+                    <button disabled={page === 1} onClick={this.prevPage}>Previous</button>
+                    <button disabled={page === ProductInfo.pages} onClick={this.nextPage}>Next</button>
+                </div>
             </div>
         );
     };    
