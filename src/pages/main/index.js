@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import api from '../../services/api';
 import './style.css';
+import { Link } from 'react-router-dom';
 
 
 export default class Main extends Component {
@@ -57,7 +58,7 @@ export default class Main extends Component {
                         <strong>{Products.title}</strong>
                         <p>{Products.description}</p>
 
-                        <a href="#">Acessar</a>
+                        <Link to={`/product/${Products._id}`}>Access</Link>
                     </article>//retorna elementos da lista {key = {nome_da Variavel._id  usar sempre no elemento apos o map()}}
                 ))};
                 <div className="buttons">
