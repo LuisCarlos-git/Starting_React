@@ -1,0 +1,14 @@
+.product_info {
+    max-width: 700px;
+    margin: 20px auto 0;
+    padding: 0px 20px; 
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+.product_info p {
+    color: #666;
+}
+.product_info a {
+    color: #069;
+}
